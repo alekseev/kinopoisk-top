@@ -1,0 +1,64 @@
+﻿<html>
+	<head>
+		<link href='style.css' rel="stylesheet" type="text/css">
+		<script>
+			var port = {};
+			var obj = {};
+			var elements = {};
+			
+			function bodyLoad(){
+				elements.paid = document.getElementById('paid');
+				elements.short = document.getElementById('short');
+				elements.unpro = document.getElementById('unpro');
+				elements.long = document.getElementById('long');
+				elements.pro = document.getElementById('pro');
+			};
+			
+			chrome.windows.getCurrent(function(w){
+				chrome.tabs.getSelected(w.id,function(t){
+					port = chrome.tabs.connect(t.id);
+				})
+			});
+			
+			function onClick(){
+				for(var i in elements){
+					obj[i] = elements[i].checked;
+				};
+				
+				if(obj.pro && obj.unpro){
+					alert("Выберите только про или только не про.");
+					return false;
+				};
+				if(obj.long && obj.short){
+					alert("Выберите только долгосрочные или только краткосрочные.");
+					return false;
+				};
+				
+				port.postMessage(obj);
+				self.close();
+			};
+			
+		</script>
+	</head>
+	<body onload='bodyLoad();'>
+		<div class='main'>
+			<div>
+				<span class='title'>
+					Что скрыть?
+				</span>
+				
+				<div><label><input type='checkbox' id='paid'> Платные проекты </label></div>
+				<div><label><input type='checkbox' id='pro'> "pro" проекты </label></div>
+				<div><label><input type='checkbox' id='unpro'> Не "pro" проекты </label></div>
+				<div><label><input type='checkbox' id='short'> Краткосрочные проекты </label></div>
+				<div><label><input type='checkbox' id='long'> Долгосрочные проекты </label></div>
+
+			</div>
+			<div class='footer'>
+				<button onclick='onClick();'>
+					Применить
+				</button>
+			</div>
+		</div>
+	</body>
+</html>

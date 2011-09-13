@@ -1,0 +1,26 @@
+*{
+				font-family: tahoma;
+				font-size:14px;
+			}
+			.main{
+				width:200px;
+				border:1px solid black;
+				padding:4px;
+			}
+			
+			.main div{
+				margin:2px;
+			}
+			.footer{
+				text-align:right;
+				padding:10px;
+			}
+			.title{
+				position: relative;
+				background: white;
+				top: -12px;
+				padding:4px;
+			}
+			table{
+				width:100%;
+			}

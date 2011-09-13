@@ -1,0 +1,21 @@
+﻿{
+  "name":"КиноПоиск Топ 250",
+  "version": "1.0",
+  "background_page": "bg.html",
+  "icons": {
+    "48":"icon_48.png",
+    "128":"icon_128.png"
+  },
+  "page_action":{
+    "default_title": "Ffilter",
+    "default_icon": "icon_19.png",
+    "default_popup":"popup.html"
+  },
+  "permissions": [
+    "tabs","http://www.kinopoisk.ru/*"
+  ],
+  "content_scripts":[{
+    "matches": ["http://www.kinopoisk.ru/*"],
+    "js": ["jq.js","script.js"]
+  }]
+}
